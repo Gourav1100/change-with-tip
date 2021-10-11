@@ -9,6 +9,6 @@
 
 2. Frontend Installation
 ```sh
-cd frontend && npm install
+cd templates && npm install
 npm start
 ```
