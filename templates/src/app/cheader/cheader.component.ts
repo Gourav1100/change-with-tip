@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-const logo = require("./logo.png").default as string
+const logo = require("./../icons/logo.png").default as string
 
 @Component({
   selector: 'cheader',
