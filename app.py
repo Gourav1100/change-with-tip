@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 #from forms import tips
 from datetime import datetime
 from cryptography.fernet import Fernet
+from werkzeug.security import check_password_hash, generate_password_hash
 
 # initialising fernet
 key = Fernet.generate_key()
@@ -63,6 +64,15 @@ def submit_tip(data):
         db.session.add(add_tip)
         db.session.commit()
         return redirect("/")
+
+@app.route("/login/<username>/<password>", methods=["POST"])
+def login_admin(username, password):
+    user=admin.query.filter_by(username=username).first()
+    if user and check_password_hash(user.password_hash ,password):
+        flash("Login Successful!")
+        return redirect("/admin_home")
+    return redirect("/")    
+    
 
 
 
