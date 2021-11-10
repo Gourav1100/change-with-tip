@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect
 from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
-from forms import tips
+#from forms import tips
 from datetime import datetime
 from cryptography.fernet import Fernet
 from werkzeug.security import check_password_hash, generate_password_hash
