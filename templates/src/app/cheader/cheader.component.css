@@ -1,0 +1,16 @@
+.logocontainer{
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #ecf0f1;
+    padding: 0.5rem;
+}
+.logotitle{
+    font-size: 3rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+.logo{
+    margin: 0;
+    width: 5rem;
+}

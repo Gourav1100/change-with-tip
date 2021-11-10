@@ -1,0 +1,26 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.container{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin: 2rem;
+    opacity: 0.9;
+    border-radius: 1rem;
+    background-color: #ecf0f1;
+}
+.tiptextarea{
+    border-radius: 1rem;
+    max-height:30rem;
+    min-height: 30rem;
+    padding-top: 2rem;
+    font-size: 1.2rem;
+}
+.tipform{
+    width: 100%;
+    text-align: center;
+}
+.tipform-container{
+    padding-left: 5rem;
+    padding-right: 5rem;
+}

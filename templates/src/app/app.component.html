@@ -1,3 +1,27 @@
-<h1>
-  Share Tip
-</h1>
+<cheader></cheader>
+
+<div class="container">
+  <mat-grid-list cols="2" rowHeight="6rem">
+    <mat-grid-tile [colspan]="1" [rowspan]="4">
+      <aboutus></aboutus>
+    </mat-grid-tile>
+    <form action="#" onsubmit="null" class="tipform-container">
+      <mat-grid-tile [colspan]="1" [rowspan]="7">
+        <mat-form-field class="tipform" appearance="fill" style="padding-left: 2rem; padding-right:2rem;">
+          <mat-label style="font-size: 1.5rem;font-weight: 550;">Leave a tip</mat-label>
+          <textarea class="tiptextarea" matInput placeholder="Leave your tip here..."></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="4">
+        other detials here
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button mat-raised-button color="primary" style="width: 50%;">Submit</button>
+      </mat-grid-tile>
+    </form>
+  </mat-grid-list>
+</div>
+
+<div class="footer">
+Footer Here
+</div>

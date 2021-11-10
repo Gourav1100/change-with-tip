@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from forms import tips
+#from forms import tips
 from datetime import datetime
 
 
