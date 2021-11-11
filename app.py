@@ -2,12 +2,13 @@ from flask import Flask, request, redirect, render_template
 from flask.helpers import flash
 from flask_sqlalchemy import SQLAlchemy
 #from forms import tips
-from datetime import datetime
+from datetime import datetime, timedelta
 from cryptography.fernet import Fernet
 from werkzeug.security import check_password_hash, generate_password_hash
 from dotenv import load_dotenv   #for python-dotenv method
 load_dotenv()                    #for python-dotenv method
 import os
+from apscheduler.schedulers.background import BackgroundScheduler
 
 # initialising fernet
 key = os.environ.get("FERNET_KEY")
@@ -22,6 +23,7 @@ db = SQLAlchemy(app)
 def checkdata(data):
     return True
 
+# Functions to encrypt and decrypt the tips given by user
 def encrypt_tip(data):
     return fernet.encrypt(data.encode())
 
@@ -46,6 +48,24 @@ class tips(db.Model):
         return f"tips('{self.id}', '{self.tip}', '{self.timeline}')"
 
 
+    # Functions to delete the tips after 24 hours
+    @classmethod
+    def delete_expired(cls):
+        expiration_days = 1
+        limit = datetime.utcnow() - timedelta(expiration_days)
+        cls.query.filter(cls.timeline > limit).delete()
+        db.session.commit()    
+
+
+    def delete_expired_tips():
+        tips.delete_expired()
+
+# Scheduling the job to automatically delete the tips after 24 hours
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(tips.delete_expired_tips,'interval',minutes=1)
+sched.start()
+
+
 class admin(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
@@ -60,7 +80,7 @@ class admin(db.Model):
 def hello():
     return "Hello World"
 
-@app.route("/submit_tip/<data>", methods=["POST"])
+@app.route("/submit_tip/<data>", methods=["GET","POST"])
 def submit_tip(data):
     if checkdata(data):
         add_tip=tips(tip=encrypt_tip(data))
