@@ -1,27 +1,28 @@
+<!-- Custom Header -->
 <cheader></cheader>
-
+<!-- Body -->
 <div class="container">
-  <mat-grid-list cols="2" rowHeight="6rem">
-    <mat-grid-tile [colspan]="1" [rowspan]="4">
+  <mat-grid-list cols="2" rowHeight="3rem">
+    <mat-grid-tile [colspan]="1" [rowspan]="12">
       <aboutus></aboutus>
     </mat-grid-tile>
     <form action="#" onsubmit="null" class="tipform-container">
-      <mat-grid-tile [colspan]="1" [rowspan]="7">
+      <mat-grid-tile [colspan]="1" [rowspan]="14">
         <mat-form-field class="tipform" appearance="fill" style="padding-left: 2rem; padding-right:2rem;">
-          <mat-label style="font-size: 1.5rem;font-weight: 550;">Leave a tip</mat-label>
-          <textarea class="tiptextarea" matInput placeholder="Leave your tip here..."></textarea>
+          <mat-label style="font-size: 1.2rem;font-weight: 550;">Your Suggestion Goes Here ...</mat-label>
+          <textarea class="tiptextarea" matInput placeholder="Leave your Suggestion here..."></textarea>
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="4">
-        other detials here
+        <aboutus-details></aboutus-details>
       </mat-grid-tile>
-      <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <button mat-raised-button color="primary" style="width: 50%;">Submit</button>
+      <mat-grid-tile [colspan]="1" [rowspan]="1.5" style="margin-top: -3rem;">
+        <div class="submit-container">
+          <button class="submit"><span><img height="80" [src]="submit" alt="Submit"></span></button>
+        </div>
       </mat-grid-tile>
     </form>
   </mat-grid-list>
 </div>
-
-<div class="footer">
-Footer Here
-</div>
+<!-- Custom footer -->
+<cfooter></cfooter>

@@ -8,12 +8,16 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {AboutUs} from "./AboutUs/AboutUs.component";
 import { Cheader } from './cheader/cheader.component';
+import { AboutUsDetails } from './aboutus_details/AboutUs_details.component';
+import { Cfooter } from './cfooter/cfooter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutUs,
-    Cheader
+    Cheader,
+    AboutUsDetails,
+    Cfooter
   ],
   imports: [
     BrowserModule,
