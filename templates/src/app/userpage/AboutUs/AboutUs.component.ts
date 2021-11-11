@@ -10,9 +10,7 @@ export class AboutUs implements AfterViewInit{
   @ViewChild('content') div:ElementRef
   content:string="Nobody should be whipped. \n Remember that, once and for all. \n Neither man nor animal can be influenced\n by anything but suggestion.\n - \b Mikhail Bulgakov \b"
   itterator
-  stoptyping():void{
-    clearInterval(this.itterator);
-  }
+
   ngAfterViewInit(){
     let i:number=0;
     let flag: number=0
@@ -30,13 +28,14 @@ export class AboutUs implements AfterViewInit{
             i++
           }
           this.div.nativeElement.innerHTML+="<b>"+text+"</b>"
+          i++
         }
         else{
           this.div.nativeElement.innerHTML+=this.content[i++];
         }
       }
       else{
-        this.stoptyping();
+        clearInterval(this.itterator);
       }
      }, 50);
   }
