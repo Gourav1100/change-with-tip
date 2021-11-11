@@ -6,10 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {AboutUs} from "./AboutUs/AboutUs.component";
+import {AboutUs} from "./userpage/AboutUs/AboutUs.component";
 import { Cheader } from './cheader/cheader.component';
-import { AboutUsDetails } from './aboutus_details/AboutUs_details.component';
+import { AboutUsDetails } from './userpage/aboutus_details/AboutUs_details.component';
 import { Cfooter } from './cfooter/cfooter.component';
+import { Userpagecomponent } from './userpage/userpage.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { Cfooter } from './cfooter/cfooter.component';
     AboutUs,
     Cheader,
     AboutUsDetails,
+    Userpagecomponent,
     Cfooter
   ],
   imports: [

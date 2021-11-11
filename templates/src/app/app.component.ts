@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-const submit=require("./icons/submit.png").default as string
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +7,6 @@ const submit=require("./icons/submit.png").default as string
 })
 export class AppComponent implements OnInit{
   title = 'app';
-  submit=submit
   constructor(){
 
   }

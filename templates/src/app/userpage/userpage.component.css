@@ -1,0 +1,27 @@
+.tiptextarea{
+    border-radius: 1rem;
+    max-height:30rem;
+    min-height: 30rem;
+    padding: -5rem;
+    font-size: 1.2rem;
+}
+.tipform{
+    width: 100%;
+    text-align: center;
+}
+.tipform-container{
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+.submit{
+    border: none;
+    border-radius: 50%;
+    height: 5rem;
+    box-shadow: none;
+}
+.submit:hover {
+    background-color: #3f51b5;
+}
+.submit:active {
+    background-color: #16a085;
+}
