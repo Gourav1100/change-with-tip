@@ -7,9 +7,10 @@ const submit=require("./../icons/submit.png").default as string
   templateUrl: './userpage.component.html',
   styleUrls: ['./userpage.component.css']
 })
-export class Userpagecomponent implements OnInit{
+export class Userpagecomponent {
   submit=submit
   cols : number;
+  tip: string = '';
 
   gridByBreakpoint = {
     xl: 2,
@@ -19,7 +20,10 @@ export class Userpagecomponent implements OnInit{
     xs: 1
   }
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private httpClient: HttpClient
+    ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -46,7 +50,8 @@ export class Userpagecomponent implements OnInit{
       }
     });
   }
-  ngOnInit(){
+
+  submitTip(event: Event): void {
 
   }
 }

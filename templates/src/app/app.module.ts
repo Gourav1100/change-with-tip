@@ -11,6 +11,7 @@ import { Cheader } from './cheader/cheader.component';
 import { AboutUsDetails } from './userpage/aboutus_details/AboutUs_details.component';
 import { Cfooter } from './cfooter/cfooter.component';
 import { Userpagecomponent } from './userpage/userpage.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { Userpagecomponent } from './userpage/userpage.component';
     BrowserAnimationsModule,
     MatGridListModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

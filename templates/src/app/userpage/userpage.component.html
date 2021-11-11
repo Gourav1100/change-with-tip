@@ -2,11 +2,11 @@
     <mat-grid-tile [colspan]="1" [rowspan]="12">
       <aboutus></aboutus>
     </mat-grid-tile>
-    <form action="#" onsubmit="null" class="tipform-container">
+    <form (submit)="submitTip($event)" class="tipform-container">
       <mat-grid-tile [colspan]="1" [rowspan]="14">
         <mat-form-field class="tipform" appearance="fill" style="padding-left: 2rem; padding-right:2rem;">
           <mat-label style="font-size: 1.2rem;font-weight: 550;">Your Suggestion Goes Here ...</mat-label>
-          <textarea class="tiptextarea" matInput placeholder="Leave your Suggestion here..."></textarea>
+          <textarea [(ngModel)]="tip" [ngModelOptions]="{standalone: true}" class="tiptextarea" matInput placeholder="Leave your Suggestion here..."></textarea>
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]="1" [rowspan]="4">

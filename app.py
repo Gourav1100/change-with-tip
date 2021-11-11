@@ -54,7 +54,7 @@ class tips(db.Model):
         expiration_days = 1
         limit = datetime.utcnow() - timedelta(expiration_days)
         cls.query.filter(cls.timeline > limit).delete()
-        db.session.commit()    
+        db.session.commit()
 
 
     def delete_expired_tips():
@@ -66,13 +66,13 @@ sched.add_job(tips.delete_expired_tips,'interval',minutes=1)
 sched.start()
 
 
-class admin(db.Model):
+class Admin(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
     password_hash = db.Column(db.String(120), nullable = False)
 
     def __repr__(self):
-        return f"admin('{self.id}' ,'{self.username}')"
+        return f"Admin('{self.id}' ,'{self.username}')"
 
 
 
@@ -106,12 +106,8 @@ def get_tips():
         dic["timeline"]=tip.timeline
         dic["tip"]=decrypt_tip(tip.tip)
         data.append(dic)
-    
-    return render_template("admin_home.html", data=data)   
-
-    
-
-
+    return {'data': data }
+    # return render_template("admin_home.html", data=data)
 
 if __name__ == '__main__':
       app.run(debug=True)
