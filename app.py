@@ -14,23 +14,38 @@ load_dotenv()                   #for python-dotenv method
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 
+class User(object):
+    def __init__(self, id, username, password):
+        self.id = id
+        self.username = username
+        self.password = password
+
+    def __str__(self):
+        return "User(id='%s')" % self.id
+
+users = [
+    User(1, 'admin@admin.org', 'admin')
+]
+
+username_table = {u.username: u for u in users}
+userid_table = {u.id: u for u in users}
 
 def authenticate(username, password):
-    admin = {
-        'email': 'admin@admin.org',
-        'password': 'admin'
-    }
-    if admin.email == username and safe_str_cmp(
-        admin.password.encode('utf-8'), password.encode('utf-8')):
-        return admin
+    user = username_table.get(username, None)
+    if user and safe_str_cmp(user.password.encode('utf-8'), password.encode('utf-8')):
+        return user
 
+def identity(payload):
+    user_id = payload['identity']
+    return userid_table.get(user_id, None)
 
 # Initialising the app and environment variables
 app = Flask(__name__)
 CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-jwt = JWT(app, authenticate, 'Admin')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+jwt = JWT(app, authenticate, identity)
 db.init_app(app)
 
 
@@ -76,6 +91,7 @@ def login_admin(username, password):
 
 # Admin Home route to show the tips received
 @app.route("/admin_home")
+@jwt_required()
 def get_tips():
     tips_rec = tips.query.all()
     data=[]
