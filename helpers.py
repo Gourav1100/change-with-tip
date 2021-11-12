@@ -1,6 +1,7 @@
 import os
 from cryptography.fernet import Fernet
-
+from dotenv import load_dotenv   #for python-dotenv method
+load_dotenv()                    #for python-dotenv method
 # initialising fernet
 key = os.environ.get("FERNET_KEY")
 fernet = Fernet(key)

@@ -6,10 +6,9 @@ from helpers import encrypt_tip,decrypt_tip,checkdata
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 from dotenv import load_dotenv   #for python-dotenv method
-load_dotenv()                    #for python-dotenv method
-import os
 from apscheduler.schedulers.background import BackgroundScheduler
-
+import os
+load_dotenv()                   #for python-dotenv method
 
 # Initialising the app and environment variables
 app = Flask(__name__)
