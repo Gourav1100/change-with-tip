@@ -11,7 +11,7 @@ import { Cheader } from './cheader/cheader.component';
 import { AboutUsDetails } from './userpage/aboutus_details/AboutUs_details.component';
 import { Cfooter } from './cfooter/cfooter.component';
 import { Userpagecomponent } from './userpage/userpage.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 
@@ -33,7 +33,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,87 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.description{
+    font-size: 2.5rem;
+    font-weight: 600;
+
+}
+.title{
+    margin-right: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+.formdata{
+    width: 100%;
+    min-width: 100%;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+.formcontainer{
+    align-content: center;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+.logotitle{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+.logo{
+    margin: 0;
+    width: 5rem;
+}
+.submit{
+    border: none;
+    border-radius: 50%;
+    height: 5rem;
+    box-shadow: none;
+}
+.submit:hover {
+    background-color: #3f51b5;
+}
+.submit:active {
+    background-color: #16a085;
+}
+.subcontainer{
+    width: 100%;
+    text-align: center;
+}
+@media only screen and (min-width:1280px){
+    .title{
+        font-size: 2rem;
+    }
+    .logotitle{
+        font-size: 2rem;
+        font-weight: 600;
+        margin-left: 1rem;
+    }
+    .formdata{
+        width: 100%;
+        min-width: 100%;
+        font-size: 1rem;
+    }
+}
+@media only screen and (min-width: 1620px){
+    .title{
+        font-size: 3rem;
+    }
+    .logotitle{
+        font-size: 2.8rem;
+        font-weight: 600;
+        margin-left: 1rem;
+    }
+    .formdata{
+        width: 100%;
+        min-width: 100%;
+        font-size: 1.2rem;
+    }
+    .logo{
+        width: 6rem;
+    }
+}

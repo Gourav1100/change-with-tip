@@ -19,7 +19,7 @@ export class Userpagecomponent {
   gridByBreakpoint = {
     xl: 2,
     lg: 2,
-    md: 2,
+    md: 1,
     sm: 1,
     xs: 1
   }

@@ -1,8 +1,42 @@
-<h1>Admin page</h1>
+<!-- <h1>Admin page</h1> -->
 <div style="padding: 20px">
-  <form (submit)="login($event)">
-    <input type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true}" placeholder="Email Address.." /> <br />
-    <input type="password" [(ngModel)]="password" [ngModelOptions]="{ standalone: true}" /> <br />
-    <input type="submit" value="Login" />
+  <form (submit)="login($event)" class="formcontainer">
+    <mat-grid-list cols="{{cols}}" rowHeight="3rem">
+      <mat-grid-tile [rowspan]="rows" [colspan]="1">
+        <div class="description">
+          <img [src]="logo" [alt]="logo" class="logo">
+          <span class="logotitle">Change With Tip</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [rowspan]="rows" [colspan]="1">
+        <div class="title" #title>
+          Admin Login
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [rowspan]="8" [colspan]="1">
+        <div>
+          <mat-form-field class="formdata" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [(ngModel)]="email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="formdata" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input [(ngModel)]="password" [ngModelOptions]="{ standalone: true}" type="password" matInput>
+          </mat-form-field>
+          <div class="subcontainer">
+            <button class="submit"><span><img height="80" [src]="submit" alt="Submit"></span></button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [rowspan]="3" [colspan]="cols">
+        <aboutus-details></aboutus-details>
+      </mat-grid-tile>
+    </mat-grid-list>
   </form>
 </div>
