@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 const submit=require("./../icons/submit.png").default as string
 @Component({
@@ -7,10 +9,12 @@ const submit=require("./../icons/submit.png").default as string
   templateUrl: './userpage.component.html',
   styleUrls: ['./userpage.component.css']
 })
+@Injectable()
 export class Userpagecomponent {
   submit=submit
   cols : number;
-  tip: string = '';
+  public tip: string = '';
+  Url = "https://127.0.0.1:5000/submit_tip/"
 
   gridByBreakpoint = {
     xl: 2,
@@ -22,7 +26,7 @@ export class Userpagecomponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private httpClient: HttpClient
+    private http: HttpClient
     ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -52,6 +56,16 @@ export class Userpagecomponent {
   }
 
   submitTip(event: Event): void {
+    event.preventDefault
+    this.http.post(this.Url+this.tip,{}).toPromise().then(
+      (response)=>{
+        // if(=="Tip Submission Successful!")
+        console.log(response)
+      },
+      (response)=>{
+        console.error(response)
 
+      }
+    );
   }
 }
