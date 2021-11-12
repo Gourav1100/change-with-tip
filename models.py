@@ -31,4 +31,4 @@ class Admin(db.Model):
     password_hash = db.Column(db.String(120), nullable = False)
 
     def __repr__(self):
-        return f"Admin('{self.id}' ,'{self.username}')"        
+        return f"Admin('{self.id}' ,'{self.username}')"

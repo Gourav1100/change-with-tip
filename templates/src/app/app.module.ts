@@ -13,9 +13,11 @@ import { Cfooter } from './cfooter/cfooter.component';
 import { Userpagecomponent } from './userpage/userpage.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
+    AdminPageComponent,
     AppComponent,
     AboutUs,
     Cheader,

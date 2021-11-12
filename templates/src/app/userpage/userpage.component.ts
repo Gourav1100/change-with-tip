@@ -14,7 +14,7 @@ export class Userpagecomponent {
   submit=submit
   cols : number;
   public tip: string = '';
-  Url = "https://127.0.0.1:5000/submit_tip/"
+  url = "http://localhost:5000/submit_tip/"
 
   gridByBreakpoint = {
     xl: 2,
@@ -56,15 +56,14 @@ export class Userpagecomponent {
   }
 
   submitTip(event: Event): void {
-    event.preventDefault
-    this.http.post(this.Url+this.tip,{}).toPromise().then(
-      (response)=>{
-        // if(=="Tip Submission Successful!")
-        console.log(response)
+    event.preventDefault();
+    this.http.get<{result: string}>(this.url + this.tip).toPromise().then(
+      (response) => {
+        this.tip = '';
+        alert(response.result);
       },
-      (response)=>{
-        console.error(response)
-
+      (response) => {
+        console.error(response);
       }
     );
   }

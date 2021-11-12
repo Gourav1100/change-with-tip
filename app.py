@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template
 from flask.helpers import flash
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from models import tips, Admin, db
 from helpers import encrypt_tip,decrypt_tip,checkdata
@@ -10,10 +11,26 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 load_dotenv()                   #for python-dotenv method
 
+from flask_jwt import JWT, jwt_required, current_identity
+from werkzeug.security import safe_str_cmp
+
+
+def authenticate(username, password):
+    admin = {
+        'email': 'admin@admin.org',
+        'password': 'admin'
+    }
+    if admin.email == username and safe_str_cmp(
+        admin.password.encode('utf-8'), password.encode('utf-8')):
+        return admin
+
+
 # Initialising the app and environment variables
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+jwt = JWT(app, authenticate, 'Admin')
 db.init_app(app)
 
 
@@ -34,17 +51,19 @@ sched.start()
 
 @app.route("/")
 def hello():
-    return "Hello World"
+    return { 'res': "Hello World"}
 
 # Route for the user to submit tip to backend
-@app.route("/submit_tip/<data>", methods=["GET","POST"])
-def submit_tip(data):
-    if checkdata(data):
-        add_tip=tips(tip=encrypt_tip(data))
+@app.route("/submit_tip/<tip>", methods=["GET"])
+def submit_tip(tip):
+    if tip:
+        add_tip=tips(tip=encrypt_tip(tip))
         db.session.add(add_tip)
         db.session.commit()
-        return "Tip Submission Successful!"
-
+        return { 'result' : 'Tip Submission Successful!'}
+    else:
+        print('error')
+        return {'result': 'error'}
 
 # Route for the Admin to login
 @app.route("/login/<username>/<password>", methods=["POST"])
