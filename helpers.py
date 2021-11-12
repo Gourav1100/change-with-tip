@@ -5,8 +5,6 @@ from cryptography.fernet import Fernet
 key = os.environ.get("FERNET_KEY")
 fernet = Fernet(key)
 
-
-
 # Functions to encrypt and decrypt the tips given by user
 def encrypt_tip(data):
     return fernet.encrypt(data.encode())
@@ -14,8 +12,7 @@ def encrypt_tip(data):
 def decrypt_tip(data):
     return fernet.decrypt(data).decode()
 
-
 def checkdata(data):
     if data:
         return True
-    return False       
+    return False
