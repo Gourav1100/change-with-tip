@@ -1,4 +1,4 @@
-# change-with-tip
+# Change With Tip
 
 1. Installation for backend instructions
   ```sh
@@ -19,7 +19,7 @@ Build frontend:
 ```sh
 cd templates && npm install
 ng build --prod
-``
+```
 
 Start prod server:
 ```sh
