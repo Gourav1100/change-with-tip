@@ -14,7 +14,7 @@ npm start
 ```
 Visit http://localhost:4200 to use the application.
 
-Prod Mode:
+**Prod Mode:**
 
 Build frontend:
 ```sh
