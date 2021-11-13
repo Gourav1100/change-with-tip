@@ -12,3 +12,16 @@
 cd templates && npm install
 npm start
 ```
+
+Prod Mode:
+
+Build frontend:
+```sh
+cd templates && npm install
+ng build --prod
+``
+
+Start prod server:
+```sh
+  flask run
+```
