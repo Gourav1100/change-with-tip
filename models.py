@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 
-
 db = SQLAlchemy()
 
 class tips(db.Model):
@@ -12,7 +11,6 @@ class tips(db.Model):
     def __repr__(self) -> str:
         return f"tips('{self.id}', '{self.tip}', '{self.timeline}')"
 
-
     # Functions to delete the tips after 24 hours
     @classmethod
     def delete_expired(cls):
@@ -20,7 +18,6 @@ class tips(db.Model):
         limit = datetime.utcnow() - timedelta(expiration_days)
         cls.query.filter(cls.timeline > limit).delete()
         db.session.commit()
-
 
     def delete_expired_tips():
         tips.delete_expired()

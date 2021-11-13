@@ -25,3 +25,11 @@ Start prod server:
 ```sh
   flask run
 ```
+
+Webapp has 3 pages:
+  / : User can submit tip.
+  /admin : Admin can login to admin dashboard from here.
+  Admin credentials:
+    email: admin@admin.org
+    password: admin
+  /admin-dashboard: Admin view submitted tips.

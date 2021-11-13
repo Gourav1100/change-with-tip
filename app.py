@@ -1,17 +1,17 @@
-from flask import Flask, request, redirect, render_template
-from flask.helpers import flash, send_from_directory
+from flask import Flask, redirect, render_template
+from flask.helpers import flash
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 from models import tips, Admin, db
-from helpers import encrypt_tip,decrypt_tip,checkdata
-from datetime import datetime, timedelta
-from werkzeug.security import check_password_hash, generate_password_hash
+from helpers import encrypt_tip, decrypt_tip
+from werkzeug.security import check_password_hash
 from dotenv import load_dotenv   #for python-dotenv method
 from apscheduler.schedulers.background import BackgroundScheduler
+
 import os
+
 load_dotenv()                   #for python-dotenv method
 
-from flask_jwt import JWT, jwt_required, current_identity
+from flask_jwt import JWT, jwt_required
 from werkzeug.security import safe_str_cmp
 
 class User(object):
@@ -39,19 +39,23 @@ def identity(payload):
     user_id = payload['identity']
     return userid_table.get(user_id, None)
 
-# Initialising the app and environment variables
+# Initialising the app and environment variables.
 app = Flask(
     __name__,
-    template_folder=os.path.abspath('./templates/dist/app'),
-    static_url_path='',
-    static_folder=os.path.abspath('./templates/dist/app'))
+    template_folder = os.path.abspath('./templates/dist/app'),
+    static_url_path = '',
+    static_folder = os.path.abspath('./templates/dist/app'))
+
+# Enabling cross origin requests.
 CORS(app)
+
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-jwt = JWT(app, authenticate, identity)
-db.init_app(app)
 
+jwt = JWT(app, authenticate, identity)
+
+db.init_app(app)
 
 # Ensure responses aren't cached
 @app.after_request
@@ -61,12 +65,14 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+def delete_expired_tips_in_app_context():
+    with app.app_context():
+        tips.delete_expired_tips()
 
 # Scheduling the job to automatically delete the tips after 24 hours
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(tips.delete_expired_tips,'interval',minutes=1)
+sched.add_job(delete_expired_tips_in_app_context, 'interval', minutes=1)
 sched.start()
-
 
 @app.route("/")
 def hello():
@@ -76,19 +82,18 @@ def hello():
 @app.route("/submit_tip/<tip>", methods=["GET"])
 def submit_tip(tip):
     if tip:
-        add_tip=tips(tip=encrypt_tip(tip))
+        add_tip = tips(tip = encrypt_tip(tip))
         db.session.add(add_tip)
         db.session.commit()
         return { 'result' : 'Tip Submission Successful!'}
     else:
-        print('error')
         return {'result': 'error'}
 
 # Route for the Admin to login
 @app.route("/login/<username>/<password>", methods=["POST"])
 def login_admin(username, password):
-    user=Admin.query.filter_by(username=username).first()
-    if user and check_password_hash(user.password_hash ,password):
+    user = Admin.query.filter_by(username = username).first()
+    if user and check_password_hash(user.password_hash, password):
         flash("Login Successful!")
         return redirect("/admin_home")
     return True
@@ -98,15 +103,15 @@ def login_admin(username, password):
 @jwt_required()
 def get_tips():
     tips_rec = tips.query.all()
-    data=[]
+    data = []
     for tip in tips_rec:
-        dic={}
-        dic["id"]=tip.id
-        dic["timeline"]=tip.timeline
-        dic["tip"]=decrypt_tip(tip.tip)
+        dic = {}
+        dic["id"] = tip.id
+        dic["timeline"] = tip.timeline
+        dic["tip"] = decrypt_tip(tip.tip)
         data.append(dic)
+
     return {'data': data }
-    # return render_template("admin_home.html", data=data)
 
 if __name__ == '__main__':
       app.run(debug=True)

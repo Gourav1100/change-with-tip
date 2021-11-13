@@ -9,7 +9,6 @@ const submit=require("./../icons/submit.png").default as string
   templateUrl: './userpage.component.html',
   styleUrls: ['./userpage.component.css']
 })
-@Injectable()
 export class Userpagecomponent {
   submit=submit
   cols : number;
