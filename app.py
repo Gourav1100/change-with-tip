@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect, render_template
-from flask.helpers import flash
+from flask.helpers import flash, send_from_directory
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from models import tips, Admin, db
@@ -40,7 +40,11 @@ def identity(payload):
     return userid_table.get(user_id, None)
 
 # Initialising the app and environment variables
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder=os.path.abspath('./templates/dist/app'),
+    static_url_path='',
+    static_folder=os.path.abspath('./templates/dist/app'))
 CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
@@ -66,7 +70,7 @@ sched.start()
 
 @app.route("/")
 def hello():
-    return { 'res': "Hello World"}
+    return render_template('index.html')
 
 # Route for the user to submit tip to backend
 @app.route("/submit_tip/<tip>", methods=["GET"])
@@ -90,7 +94,7 @@ def login_admin(username, password):
     return True
 
 # Admin Home route to show the tips received
-@app.route("/admin_home")
+@app.route("/get_tips")
 @jwt_required()
 def get_tips():
     tips_rec = tips.query.all()
