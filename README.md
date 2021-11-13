@@ -1,4 +1,4 @@
-# change-with-tip
+# Change With Tip
 
 1. Installation for backend instructions
   ```sh
@@ -12,19 +12,22 @@
 cd templates && npm install
 npm start
 ```
+Visit http://localhost:4200 to use the application.
 
-Prod Mode:
+**Prod Mode:**
 
 Build frontend:
 ```sh
 cd templates && npm install
 ng build --prod
-``
+```
 
 Start prod server:
 ```sh
   flask run
 ```
+
+Visit http://localhost:5000/ to use the application.
 
 Webapp has 3 pages:
   / : User can submit tip.
