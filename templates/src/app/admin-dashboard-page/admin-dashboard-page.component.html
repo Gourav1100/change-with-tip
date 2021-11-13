@@ -1,6 +1,6 @@
 <div class="container">
   <div class="button-container">
-    <button mat-raised-button color="warn" class="logout-button" (click)="logout"><span><img [src]="logout_button" alt="" class="logout"></span> LogOut</button>
+    <button mat-raised-button color="warn" (click)="logout()">Log out</button>
   </div>
   <div class="tips" *ngIf="tips">
     <span *ngFor="let tip of tips">
