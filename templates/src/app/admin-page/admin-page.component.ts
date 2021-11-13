@@ -4,6 +4,9 @@ import { Component, Injectable } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 const submit=require("./../icons/submit.png").default as string;
 const logo = require("./../icons/logo.png").default as string;
+const visibility_off = require("./../icons/visibility_off.png").default as string;
+const visibility_on = require("./../icons/visibility_on.png").default as string;
+
 @Component({
   selector: 'admin-page-component',
   templateUrl: './admin-page.component.html',
@@ -11,9 +14,12 @@ const logo = require("./../icons/logo.png").default as string;
 })
 @Injectable()
 export class AdminPageComponent {
+  visibility_off = visibility_off
+  visibility_on = visibility_on
   logo = logo;
   submit = submit;
   url= 'localhost:5000/login/';
+  hide : boolean = true;
   email: string;
   password: string;
   cols: number;
@@ -25,7 +31,8 @@ export class AdminPageComponent {
     sm: 1,
     xs: 1
   }
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  EmailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  PassFormControl = new FormControl('', [Validators.required,Validators.pattern("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")]);
 
   constructor(private breakpointObserver: BreakpointObserver,
     private http: HttpClient
