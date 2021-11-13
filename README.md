@@ -12,6 +12,7 @@
 cd templates && npm install
 npm start
 ```
+Visit http://localhost:4200 to use the application.
 
 Prod Mode:
 
@@ -25,3 +26,5 @@ Start prod server:
 ```sh
   flask run
 ```
+
+Visit http://localhost:5000/ to use the application.
