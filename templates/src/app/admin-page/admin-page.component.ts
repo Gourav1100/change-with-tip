@@ -32,7 +32,7 @@ export class AdminPageComponent {
     xs: 1
   }
   EmailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  PassFormControl = new FormControl('', [Validators.required,Validators.pattern("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$")]);
+  PassFormControl = new FormControl('', [Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]);
 
   constructor(private breakpointObserver: BreakpointObserver,
     private http: HttpClient
