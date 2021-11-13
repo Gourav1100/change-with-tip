@@ -2,6 +2,8 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { HttpClient } from "@angular/common/http";
 import { Component, Injectable } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "./auth.service";
 const submit=require("./../icons/submit.png").default as string;
 const logo = require("./../icons/logo.png").default as string;
 const visibility_off = require("./../icons/visibility_off.png").default as string;
@@ -18,12 +20,13 @@ export class AdminPageComponent {
   visibility_on = visibility_on
   logo = logo;
   submit = submit;
-  url= 'localhost:5000/login/';
+  url= 'http://localhost:5000/auth';
   hide : boolean = true;
   email: string;
   password: string;
   cols: number;
   rows: number = 8;
+  message: string = '';
   gridByBreakpoint = {
     xl: 3,
     lg: 3,
@@ -32,10 +35,13 @@ export class AdminPageComponent {
     xs: 1
   }
   EmailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  PassFormControl = new FormControl('', [Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]);
+  PassFormControl = new FormControl('', [Validators.required]);
 
-  constructor(private breakpointObserver: BreakpointObserver,
-    private http: HttpClient
+  constructor(
+    private authService: AuthService,
+    private breakpointObserver: BreakpointObserver,
+    private http: HttpClient,
+    private router: Router
   ) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
@@ -71,12 +77,17 @@ export class AdminPageComponent {
 
   login(event: Event): void {
     event.preventDefault();
-    this.http.get(this.url+this.email+'/'+this.password+'').toPromise().then(
+    this.http.post<{ access_token: string }>(this.url, {
+      username: this.email,
+      password: this.password
+    }).toPromise().then(
       (response) => {
-        console.log(response);
+        this.message = 'Login successfull';
+        this.authService.accessToken = response.access_token;
+        this.router.navigate(['/admin-dashboard']);
       },
       (response) => {
-        console.error(response);
+        this.message = 'Login failed';
       }
     );
   }

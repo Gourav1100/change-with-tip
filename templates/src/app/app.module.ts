@@ -14,10 +14,13 @@ import { Userpagecomponent } from './userpage/userpage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminDashboardPageComponent } from './admin-dashboard-page/admin-dashboard-page.component';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
     AdminPageComponent,
+    AdminDashboardPageComponent,
     AppComponent,
     AboutUs,
     Cheader,
@@ -29,6 +32,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CookieModule.forRoot(),
     MatGridListModule,
     MatInputModule,
     MatButtonModule,

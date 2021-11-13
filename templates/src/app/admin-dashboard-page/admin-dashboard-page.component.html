@@ -1,0 +1,9 @@
+<h1>Admin Dashboard Page</h1>
+
+<ul>
+  <li *ngFor="let tip of tips">
+    {{ tip.id }}, {{tip.tip}}, {{ tip.timeline}} <br />
+  </li>
+</ul>
+
+<button (click)="logout()">Logout</button>
