@@ -3,6 +3,8 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../admin-page/auth.service";
 
+const logout_button = require("./../icons/logout.png").default as string
+
 interface Tip {
   id: string;
   timeline: string;
@@ -11,11 +13,12 @@ interface Tip {
 
 @Component({
   selector: 'admin-dashboard-page',
-  templateUrl: './admin-dashboard-page.component.html'
+  templateUrl: './admin-dashboard-page.component.html',
+  styleUrls: ["./admin-dashboard-page.component.css"]
 })
 export class AdminDashboardPageComponent {
   tips: Tip[];
-
+  logout_button = logout_button
   constructor(
     private authService: AuthService,
     private http: HttpClient,

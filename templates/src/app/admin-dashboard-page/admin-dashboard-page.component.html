@@ -1,9 +1,18 @@
-<h1>Admin Dashboard Page</h1>
-
-<ul>
-  <li *ngFor="let tip of tips">
-    {{ tip.id }}, {{tip.tip}}, {{ tip.timeline}} <br />
-  </li>
-</ul>
-
-<button (click)="logout()">Logout</button>
+<div class="container">
+  <div class="button-container">
+    <button mat-raised-button color="warn" class="logout-button" (click)="logout"><span><img [src]="logout_button" alt="" class="logout"></span> LogOut</button>
+  </div>
+  <div class="tips" *ngIf="tips">
+    <span *ngFor="let tip of tips">
+      <mat-card class="card" >
+        <mat-card-title-group>
+          <mat-card-title class="tip-title">{{tip.id}}</mat-card-title>
+          <mat-card-subtitle class="tip-subtitle">{{tip.timeline}}</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content class="tip-content">
+          {{tip.tip}}
+        </mat-card-content>
+      </mat-card>
+    </span>
+  </div>
+</div>

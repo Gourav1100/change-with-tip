@@ -14,3 +14,12 @@
     margin: 0;
     width: 5rem;
 }
+.admin-login-link{
+    float: right;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+.admin-icon{
+    width: 2rem;
+}

@@ -1,0 +1,40 @@
+.container{
+    padding: 3rem;
+}
+.card {
+    max-width: 50%;
+    margin: 1rem;
+    margin-left: 20%;
+    padding: 4rem;
+    font-size: 2rem;
+}
+.tip-title{
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+.tip-subtitle{
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+.tip-content{
+    font-size: 1.2rem;
+}
+.notips{
+    text-align: center;
+    padding: 2rem;
+    font-size: 3rem;
+}
+.button-container{
+    text-align: right;
+    padding: 1rem;
+}
+.logout-button{
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1.5rem;
+    font-size: 1.5rem;
+}
+.logout{
+    width: 2rem;
+}

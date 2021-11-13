@@ -1,6 +1,11 @@
 *{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.authmessage{
+    font-size: 1.2rem;
+    text-align: center;
+    color: red;
+}
 .description{
     font-size: 2.5rem;
     font-weight: 600;

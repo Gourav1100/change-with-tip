@@ -9,6 +9,7 @@ const logo = require("./../icons/logo.png").default as string;
 const visibility_off = require("./../icons/visibility_off.png").default as string;
 const visibility_on = require("./../icons/visibility_on.png").default as string;
 
+
 @Component({
   selector: 'admin-page-component',
   templateUrl: './admin-page.component.html',
